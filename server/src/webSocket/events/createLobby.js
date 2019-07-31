@@ -1,11 +1,12 @@
-const Lobby = require('../../records/lobby')
-const Player = new require('../../records/player')
+const Lobby = require('../../models/lobby')
+const Player = require('../../models/player')
+const gameServer = require('../../models/gameServer')
 
-module.exports = server => clientCallback => {
+module.exports = clientCb => {
   console.log('createLobby')
   const newPlayer = new Player()
-  let newLobby = new Lobby()
-  newLobby = newLobby.connectPlayer(newPlayer)
-  clientCallback(newLobby.toJS())
-  // gameServer.addLoby()
+  const newLobby = new Lobby()
+  newLobby.connectPlayer(newPlayer)
+  gameServer.addLobby(newLobby)
+  clientCb(newLobby)
 }

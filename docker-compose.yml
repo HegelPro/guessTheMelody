@@ -1,0 +1,22 @@
+version: "3"
+
+server:
+  build: ./server
+  # Дать доступ на порту 5000
+  ports:
+    - "2000:2000"
+
+  # Перезапускать сервис после падения
+  restart: on-failure
+  volumes:
+    - sshvolume/~/app:
+
+# client:
+#   build: ./manager
+#   ports:
+#     - "4000:4000"
+#   volumes:
+#     - ./manager:/app
+#   restart: on-failure
+#   depends_on:
+#     - server

@@ -15,7 +15,9 @@
     "http": "0.0.0",
     "immutable": "^4.0.0-rc.12",
     "node": "^12.6.0",
-    "nodejs": "0.0.0"
+    "nodejs": "0.0.0",
+    "rxjs": "^6.5.2",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",

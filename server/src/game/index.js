@@ -1,3 +1,9 @@
+const Word = require('./word')
+
 class Game {
-  // static select
+  constructor() {
+    this.word = new Word()
+  }
 }
+
+module.exports = Game
