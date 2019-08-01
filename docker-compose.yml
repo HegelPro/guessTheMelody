@@ -1,22 +1,27 @@
 version: "3"
-
-server:
-  build: ./server
-  # Дать доступ на порту 5000
-  ports:
-    - "2000:2000"
-
-  # Перезапускать сервис после падения
-  restart: on-failure
-  volumes:
-    - sshvolume/~/app:
-
-# client:
-#   build: ./manager
-#   ports:
-#     - "4000:4000"
-#   volumes:
-#     - ./manager:/app
-#   restart: on-failure
-#   depends_on:
-#     - server
+services:
+    server:
+      build: ./server
+      ports:
+        - "2000:2000"
+      volumes:
+        - sshServer:/server
+    client:
+      build: ./client
+      ports:
+        - "3000:3000"
+      volumes:
+        - sshClient:/client
+volumes:
+  sshServer:
+    driver: vieux/sshfs:latest
+    driver_opts:
+      sshcmd: "server@192.168.1.52:/home/server/app/server"
+      password: "sawdqe123"
+      allow_other: ""
+  sshClient:
+    driver: vieux/sshfs:latest
+    driver_opts:
+      sshcmd: "server@192.168.1.52:/home/server/app/client"
+      password: "sawdqe123"
+      allow_other: ""
