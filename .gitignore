@@ -1,30 +1,30 @@
-# # See https://help.github.com/articles/ignoring-files/ for more about ignoring 
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring 
 
-# # dependencies
-# /client/node_modules
-# /client/.pnp
-# /client.pnp.js
+# dependencies
+clientApp/node_modules
+clientApp/.pnp
+clientApp.pnp.js
 
-# # testing
-# /client/coverage
+# testing
+clientApp/coverage
 
-# # production
-# /client/build
+# production
+clientApp/build
 
-# # misc
-# /client/.DS_Store
-# /client/.env.local
-# /client/.env.development.local
-# /client/.env.test.local
-# /client/.env.production.local
+# misc
+clientApp/.DS_Store
+clientApp/.env.local
+clientApp/.env.development.local
+clientApp/.env.test.local
+clientApp/.env.production.local
 
-# /client/npm-debug.log*
-# /client/yarn-debug.log*
-# /client/yarn-error.log*
+clientApp/npm-debug.log*
+clientApp/yarn-debug.log*
+clientApp/yarn-error.log*
 
 # # mine
-# /client/src/config
+clientApp/src/config
 
 # for server
-/server/node_modules
-/server/src/config
+serverApp/node_modules
+serverApp/src/config
