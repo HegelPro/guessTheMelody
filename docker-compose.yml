@@ -1,17 +1,17 @@
 version: "3"
 services:
     server:
-      build: ./server
+      build: ./serverApp
       ports:
         - "2000:2000"
       volumes:
-        - ./server/src:/app/src
+        - ./serverApp/src:/app/src
     client:
-      build: ./client
+      build: ./clientApp
       ports:
         - "3000:3000"
       volumes:
-        - ./client/src:/app/src
+        - ./clientApp/src:/app/src
 # volumes:
 #  sshServer:
 #    driver: vieux/sshfs:latest
