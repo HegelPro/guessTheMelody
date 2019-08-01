@@ -1,4 +1,4 @@
-const gameEvents = require('../../../../client/src/config/socket.json').sockets.game.events
+const gameEvents = require('../../config/socket.json').sockets.game.events
 
 const createLobby = require('./createLobby')
 const getLobbyList = require('./getLobbyList')
