@@ -1,4 +1,4 @@
-const socketConfig = require('../../../../client/src/config/socket.json')
+const socketConfig = require('../../config/socket.json')
 
 const server = require('http').createServer()
 

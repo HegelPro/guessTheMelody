@@ -5,23 +5,23 @@ services:
       ports:
         - "2000:2000"
       volumes:
-        - sshServer:/server
+        - ./server/src:/app/src
     client:
       build: ./client
       ports:
         - "3000:3000"
       volumes:
-        - sshClient:/client
-volumes:
-  sshServer:
-    driver: vieux/sshfs:latest
-    driver_opts:
-      sshcmd: "server@192.168.1.52:/home/server/app/server"
-      password: "sawdqe123"
-      allow_other: ""
-  sshClient:
-    driver: vieux/sshfs:latest
-    driver_opts:
-      sshcmd: "server@192.168.1.52:/home/server/app/client"
-      password: "sawdqe123"
-      allow_other: ""
+        - ./client/src:/app/src
+# volumes:
+#  sshServer:
+#    driver: vieux/sshfs:latest
+#    driver_opts:
+#      sshcmd: "server@192.168.1.52:/home/server/app/server"
+#      password: "sawdqe123"
+#      allow_other: ""
+#  sshClient:
+#    driver: vieux/sshfs:latest
+#    driver_opts:
+#      sshcmd: "server@192.168.1.52:/home/server/app/client"
+#      password: "sawdqe123"
+#      allow_other: ""
