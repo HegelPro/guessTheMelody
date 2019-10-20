@@ -3,6 +3,7 @@ class Letter {
     this.char = char
     this.isHiden = true
   }
+
   show() {
     this.isHiden = false
   }

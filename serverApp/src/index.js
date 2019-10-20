@@ -1,20 +1,28 @@
 const { connection } = require('./webSocket/events')
 const cookie = require('cookie')
 
-const webSocket = require('./webSocket/init')
+require('./configServer')
 
-const db = require('./firabase')
+const axios = require('axios')
 
-webSocket
-  .use((socket, next) => {
-    const clientCookie = cookie.parse(socket.request.headers.cookie)
-    if(!clientCookie._uid) {
-      next(new Error('You haven\'t user id!'))
-    } else {
-      next()
-    }
-  })
+async function start() {
+  const socketConfigRequest = await axios.get('http://localhost:4000/configs/socket')
+  const socketConfig = socketConfigRequest.data
+  const webSocket = require('./webSocket/init')(socketConfig)
 
-webSocket
-  .of('/game')
-  .on('connection', connection)
+  webSocket
+    .use((socket, next) => {
+      const clientCookie = cookie.parse(socket.request.headers.cookie)
+      if(!clientCookie._uid) {
+        next(new Error('You haven\'t user id!'))
+      } else {
+        next()
+      }
+    })
+
+  webSocket
+    .of(socketConfig.sockets.game.path)
+    .on('connection', socket => connection(socket, socketConfig))
+}
+
+start()

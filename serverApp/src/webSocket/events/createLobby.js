@@ -4,9 +4,13 @@ const gameServer = require('../../models/gameServer')
 
 module.exports = clientCb => {
   console.log('createLobby')
+
   const newPlayer = new Player()
   const newLobby = new Lobby()
+  
   newLobby.connectPlayer(newPlayer)
+  
   gameServer.addLobby(newLobby)
+  
   clientCb(newLobby)
 }

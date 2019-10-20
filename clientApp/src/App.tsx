@@ -8,9 +8,9 @@ import ErrorNotification from './Containers/ErrorNotification'
 
 const App: React.FC = () => (
   <Providers>
+    <Navigation />
     <Layout>
-      <ErrorNotification />
-      <Navigation />    
+      <ErrorNotification />    
       <Routers />
     </Layout>
   </Providers>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Input from '@material-ui/core/Input'
+import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import actions from '../../store/actions'
 import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState('')
@@ -12,8 +13,17 @@ const Login = () => {
 
   return (
     <Box display='flex' flexDirection='column'>
-      <Input value={emailValue} onChange={({ target: { value } }) => setEmailValue(value)} />
-      <Input value={passwordValue} onChange={({ target: { value } }) => setPasswordValue(value)} />
+      <Typography variant='h3'>Login</Typography>
+      <TextField
+        label='Email'
+        value={emailValue}
+        onChange={({ target: { value } }) => setEmailValue(value)}
+      />
+      <TextField
+        label='Password'
+        value={passwordValue}
+        onChange={({ target: { value } }) => setPasswordValue(value)}
+      />
       <Button onClick={() => dispatch(actions.login.loginAction({
         email: emailValue,
         password: passwordValue,
