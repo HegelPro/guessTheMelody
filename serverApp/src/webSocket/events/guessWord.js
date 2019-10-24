@@ -1,0 +1,2 @@
+module.exports = sioEmitter => (word) => {
+}

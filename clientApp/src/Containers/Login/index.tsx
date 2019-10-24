@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import actions from '../../store/actions'
-import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
+
+import LayoutContent from '../../Components/Layouts/LayoutContent'
+
+import actions from '../../store/actions'
+
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState('')
@@ -12,7 +15,7 @@ const Login = () => {
   const dispatch = useDispatch()
 
   return (
-    <Box display='flex' flexDirection='column'>
+    <LayoutContent>
       <Typography variant='h3'>Login</Typography>
       <TextField
         label='Email'
@@ -24,11 +27,11 @@ const Login = () => {
         value={passwordValue}
         onChange={({ target: { value } }) => setPasswordValue(value)}
       />
-      <Button onClick={() => dispatch(actions.login.loginAction({
+      <Button onClick={() => dispatch(actions.login.loginAction.request({
         email: emailValue,
         password: passwordValue,
       }))}>Submit</Button>
-    </Box>
+    </LayoutContent>
   )
 }
 

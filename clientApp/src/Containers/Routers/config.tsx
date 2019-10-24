@@ -1,11 +1,13 @@
 import Lobby from '../Lobby'
 import LobbyList from '../LobbyList'
-import WaitRoom from '../WaitRoom'
-import Home from '../../Components/Home'
-import NotFound from '../../Components/NotFound'
+import LobbyCreate from '../../Components/Pages/LobbyCreate'
+import Home from '../../Components/Pages/Home'
+import NotFound from '../../Components/Pages/NotFound'
 import AccountEdit from '../AccountEdit'
+import AccountInfo from '../../Components/Pages/AccountInfo'
 import Login from '../Login'
 import Registration from '../Registration'
+import Game from '../Game'
 
 import { IRouteData } from './types'
 
@@ -20,19 +22,39 @@ const RouterConfig: IRouteData[] = [
   },
   {
     path: '/lobby',
-    component: Lobby,
+    component: SubRoute,
+    routes: [
+      {
+        path: '/lobby/info',
+        component: Lobby,
+      },
+      {
+        path: '/lobby/create',
+        component: LobbyCreate,
+      }
+    ]
   },
   {
     path: '/lobbyList',
     component: LobbyList,
   },
   {
-    path: '/wait-room',
-    component: WaitRoom,
+    path: '/account',
+    component: SubRoute,
+    routes: [
+      {
+        path: '/account/info',
+        component: AccountInfo,
+      },
+      {
+        path: '/account/edit',
+        component: AccountEdit,
+      },
+    ]
   },
   {
-    path: '/account/edit',
-    component: AccountEdit,
+    path: '/game',
+    component: Game,
   },
   {
     path: '/auth',

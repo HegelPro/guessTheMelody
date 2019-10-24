@@ -1,18 +1,20 @@
-import { empty, from, of } from 'rxjs'
+import { empty, of } from 'rxjs'
+import { ajax } from 'rxjs/ajax'
 import { isActionOf } from 'typesafe-actions'
 import { filter, switchMap, catchError } from 'rxjs/operators'
 
 import { Epic } from '../../store/types'
 import rootActions from '../../store/actions'
 
-export const loginEpic: Epic = (action$) =>
+export const loginEpic: Epic = action$ =>
   action$
     .pipe(
-      filter(isActionOf(rootActions.login.loginAction)),
-      switchMap(({ payload: { password, email } }) => {
-        return from(fetch('http://localhost:5000/auth/login', {
+      filter(isActionOf(rootActions.login.loginAction.request)),
+      switchMap(({ payload: { password, email } }) =>
+        ajax({
+          url: 'http://localhost:5000/auth/login',
           method: 'POST',
-          credentials: 'include', // Don't forget to specify this if you need cookies
+          withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -20,26 +22,27 @@ export const loginEpic: Epic = (action$) =>
             email,
             password,
           })
-        }))
+        })
           .pipe(
-            switchMap(() => empty()),
+            switchMap(({ response }) => of(rootActions.login.loginAction.success(response))),  // TODO any
             catchError(e => of(rootActions.error.setErrorAction(e)))
           )
-      })
+      )
     )
 
-export const logoutEpic: Epic = (action$) =>
+export const logoutEpic: Epic = action$ =>
   action$
     .pipe(
       filter(isActionOf(rootActions.login.logoutAction)),
-      switchMap(() => {
-        return from(fetch('http://localhost:5000/auth/logout', {
+      switchMap(() =>
+        ajax({
+          url: 'http://localhost:5000/auth/logout',
           method: 'GET',
-          credentials: 'include', // Don't forget to specify this if you need cookies
-        }))
+          withCredentials: true,
+        })
           .pipe(
             switchMap(() => empty()),
             catchError(e => of(rootActions.error.setErrorAction(e)))
           )
-      })
+      )
     )

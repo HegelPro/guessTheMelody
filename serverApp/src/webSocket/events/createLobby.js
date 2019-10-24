@@ -1,16 +1,11 @@
-const Lobby = require('../../models/lobby')
-const Player = require('../../models/player')
-const gameServer = require('../../models/gameServer')
+const Lobbies = require('../../game/lobbies')
 
-module.exports = clientCb => {
+module.exports = emitter => () => {
   console.log('createLobby')
 
-  const newPlayer = new Player()
-  const newLobby = new Lobby()
-  
-  newLobby.connectPlayer(newPlayer)
-  
-  gameServer.addLobby(newLobby)
-  
-  clientCb(newLobby)
+  const newLobby = Lobbies.createLobby({
+    owner: emitter.socket.player
+  })
+
+  emitter.emit('createLobby', newLobby)
 }

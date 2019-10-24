@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 
+import LayoutContent from '../../Components/Layouts/LayoutContent'
 import actions from '../../store/actions'
 
 import { ICreateUserData } from './types'
-import { Typography } from '@material-ui/core'
 
 const formData = new FormData()
 
@@ -21,7 +22,7 @@ const Registration = () => {
   const dispatch = useDispatch()
 
   return (
-    <Box display='flex' flexDirection='column'>
+    <LayoutContent>
       <Typography variant='h3'>Registration</Typography>
       <TextField
         label='Name'
@@ -56,7 +57,7 @@ const Registration = () => {
           dispatch(actions.registration.createUserAction({ ...account, avatarFile: formData }))}
         }
       >Submit</Button>
-    </Box>
+    </LayoutContent>
   )
 }
 

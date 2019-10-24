@@ -1,7 +1,7 @@
-const gameServer = require('../../models/gameServer')
+const lobbies = require('../../game/lobbies')
 
-module.exports = clientCb => {
+module.exports = emitter => () => {
   console.log('getLobbyList')
 
-  clientCb(gameServer.lobbys)
+  emitter.emit('getLobbyList', lobbies.get())
 }

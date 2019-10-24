@@ -1,12 +1,12 @@
-const gameServer = require('../../models/gameServer')
 const Game = require('../../game')
 
-module.exports = socket => clientCb => {
+
+module.exports = sioEmitter => () => {
   console.log('startGame')
   const newGame = new Game()
   
   newGame.word.set('kok')
   newGame.word.showRandomLetter()
 
-  clientCb(newGame)
+  sioEmitter.emit('startGame', newGame.toClient())
 }

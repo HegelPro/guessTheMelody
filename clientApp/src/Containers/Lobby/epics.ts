@@ -1,4 +1,4 @@
-import { from, of } from 'rxjs'
+import { of, empty } from 'rxjs'
 import { isActionOf } from 'typesafe-actions'
 import { filter, switchMap } from 'rxjs/operators'
 
@@ -6,40 +6,46 @@ import { Epic } from '../../store/types'
 import rootActions from '../../store/actions'
 import socket from '../../socket'
 
-import socketConfig from '../../config/socket.json'
-import { ILobby } from './types';
+import { ILobby } from './types'
 
-const gameEvents = socketConfig.sockets.game.events
+import history from '../Routers/history'
 
-export const createLobbyEpic: Epic = (action$) =>
+
+export const createLobbyRequestEpic: Epic = (action$) =>
   action$
     .pipe(
-      filter(isActionOf(rootActions.lobby.createLobby.request)),
-      switchMap(() =>
-        from(new Promise(res => {
-          socket.emit(gameEvents.createLobby, res)
-        }))
-          .pipe(
-            switchMap((lobby: any) => {
-                // нет типизации
-              return of(rootActions.lobby.setLobbyAction(lobby as ILobby))
-            })
-          )
-      ),
+      filter(isActionOf(rootActions.lobby.createLobbyActions.request)),
+      switchMap(action => {
+        socket.send(action)
+        return empty()
+      })
     )
 
-export const startGameEpic: Epic = (action$) =>
+export const createLobbySuccessEpic: Epic = (action$) =>
   action$
     .pipe(
-      filter(isActionOf(rootActions.lobby.startGameAction.request)),
-      switchMap(() =>
-        from(new Promise(res => socket.emit('startGame', res)))
-          .pipe(
-            switchMap((gameDate: any) => {
-              // нет типизации
-              console.log(gameDate)
-              return of(rootActions.lobby.startGameAction.success())
-            })
-          )
-      ),
+      filter(isActionOf(rootActions.lobby.createLobbyActions.success)),
+        switchMap((lobby: any) => {
+        return of(rootActions.lobby.setLobbyAction(lobby as ILobby))
+      })
+    )
+
+export const startGameRequestEpic: Epic = (action$) =>
+  action$
+    .pipe(
+      filter(isActionOf(rootActions.lobby.startGameActions.request)),
+      switchMap(action => {
+        socket.send(action)
+        return empty()
+      }),
+    )
+
+export const startGameSuccessEpic: Epic = (action$) =>
+  action$
+    .pipe(
+      filter(isActionOf(rootActions.lobby.startGameActions.success)),
+      switchMap(({ payload }) => {
+        history.push('/game')
+        return of(rootActions.game.setGameAction(payload))
+      }),
     )

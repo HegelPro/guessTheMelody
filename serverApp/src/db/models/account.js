@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const account = new Schema({
+const accountSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -15,4 +15,10 @@ const account = new Schema({
     },
 })
 
-module.exports = model('Account', account)
+accountSchema.methods.toClient = function() {
+    let account = this.toObject()
+    delete account.password
+    return account
+}
+
+module.exports = model('Account', accountSchema)

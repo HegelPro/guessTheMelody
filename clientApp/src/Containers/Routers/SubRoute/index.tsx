@@ -3,7 +3,7 @@ import { Switch, useLocation } from 'react-router-dom'
 
 import RouteWithSubRoutes from '../RouteWithSubRoutes'
 import { IRouteData } from '../types'
-import NotFound from '../../../Components/NotFound'
+import NotFound from '../../../Components/Pages/NotFound'
 
 
 interface IProps {

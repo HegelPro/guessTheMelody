@@ -1,19 +1,16 @@
-import { ActionType, getType } from 'typesafe-actions'
+import { getType } from 'typesafe-actions'
 
-import * as gameActions from './actions'
 import { IGame } from './types'
+import rootActions from '../../store/actions'
+import { RootActions } from '../../store/types'
 
-
-export type GameActions = ActionType<typeof gameActions>
 
 const defaultState: IGame = { word: [] }
 
-export default (state = defaultState, action: GameActions): IGame => {
+export default (state = defaultState, action: RootActions): IGame => {
   switch (action.type) {
-    case getType(gameActions.setWord):
-      return {
-        word: action.payload
-      }
+    case getType(rootActions.game.setGameAction):
+      return action.payload
     default:
       return state
   }

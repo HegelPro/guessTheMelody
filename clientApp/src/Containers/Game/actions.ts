@@ -1,10 +1,10 @@
 import { createStandardAction } from 'typesafe-actions'
 
-import { ILetter } from './types'
+import { ILetter, IGame } from './types'
 
 
-export const getRandomSong = createStandardAction('getRandomSong')()
+export const setWordAction = createStandardAction('setWord')<ILetter[]>()
 
-export const setWord = createStandardAction('setWord')<ILetter[]>()
+export const guessWordAction = createStandardAction('guessWord')()
 
-export const guessWord = createStandardAction('guessWord')()
+export const setGameAction = createStandardAction('setGame')<IGame>()

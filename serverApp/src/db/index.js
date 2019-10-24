@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
-const config = require('./config')
+const { URL } = require('./config')
 
-require('./server') // подключение сервера 5000 порт
-
-console.log(config.getUrl)
-
-mongoose.connect(`${config.getUrl}/songs`, {
+module.exports = mongoose.connect(`${URL}/songs`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
 })
     .then(() => console.log('Database is connected.'))
-    .catch(() => console.log('Database isn\'t connected. It was error.'))
+    .catch(() => console.log('Database is NOT connected. It was error.'))
+

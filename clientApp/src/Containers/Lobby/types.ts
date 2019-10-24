@@ -1,5 +1,5 @@
 export interface ILobby {
-    id: number,
+    id: string,
     maxPlayers: number,
     minPlayers: number,
     password: string,
