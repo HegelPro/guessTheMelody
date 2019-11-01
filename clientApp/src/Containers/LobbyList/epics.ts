@@ -4,7 +4,7 @@ import { filter, switchMap } from 'rxjs/operators'
 
 import { Epic } from '../../store/types'
 import rootActions from '../../store/actions'
-import socket from '../../socket'
+import { lobbySocket } from '../../socket'
 import history from '../Routers/history'
 
 export const getLobbyListRequestEpic: Epic = action$ =>
@@ -12,7 +12,7 @@ export const getLobbyListRequestEpic: Epic = action$ =>
     .pipe(
       filter(isActionOf(rootActions.lobbyList.getLobbyListActions.request)),
       switchMap(action => {
-        socket.send(action)
+        lobbySocket.send(action)
         return empty()
       }),
     )
@@ -31,7 +31,7 @@ export const joinLobbyRequestEpic: Epic = action$ =>
     .pipe(
       filter(isActionOf(rootActions.lobbyList.joinLobbyActions.request)),
       switchMap(action => {
-        socket.send(action)
+        lobbySocket.send(action)
         return empty()
       }),
     )

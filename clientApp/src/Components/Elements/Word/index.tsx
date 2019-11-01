@@ -2,21 +2,21 @@ import React from 'react'
 
 import Letter from '../Letter'
 
-import { ILetter } from '../../../Containers/Game/types'
+import { IWord } from '../../../Containers/Game/types'
 import { useStyles } from './styles'
 
 
 interface IProps {
-  letters: ILetter[]
+  word: IWord
 }
 
 const Word = ({
-  letters,
+  word,
 }: IProps) => {
-  const classNames = useStyles()
+  const classes = useStyles()
   return (
-    <div className={classNames.root}>
-      {letters.map(({char}, i) => <Letter key={i}>{char}</Letter>)}
+    <div className={classes.root}>
+      {word.map(({char, isHidden}, i) => <Letter isHidden={isHidden} key={i}>{char}</Letter>)}
     </div>
   )
 }

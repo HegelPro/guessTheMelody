@@ -1,13 +1,17 @@
 module.exports.SOCKETS = {
-  game: {
-    path: '/game',
+  lobby: {
+    path: '/lobby',
     events: {
       createLobby: 'createLobby',
       getLobbyList: 'getLobbyList',
-      startGame: 'startGame',
       joinLobby: 'joinLobby'
+    }
+  },
+  game: {
+    path: '/game',
+    events: {
+      startGame: 'startGame',
+      guessSong: 'guessSong'
     }
   }
 }
-
-module.exports.PORT = 2000

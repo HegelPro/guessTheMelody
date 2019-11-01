@@ -3,10 +3,11 @@ import { isActionOf } from 'typesafe-actions'
 import { filter, switchMap } from 'rxjs/operators'
 
 import { Epic } from '../../store/types'
-import rootActions from '../../store/actions'
-import socket from '../../socket'
-
-import { ILobby } from './types'
+import {
+  createLobbyActions,
+  setLobbyAction,
+} from './actions'
+import { lobbySocket } from '../../socket'
 
 import history from '../Routers/history'
 
@@ -14,9 +15,9 @@ import history from '../Routers/history'
 export const createLobbyRequestEpic: Epic = (action$) =>
   action$
     .pipe(
-      filter(isActionOf(rootActions.lobby.createLobbyActions.request)),
+      filter(isActionOf(createLobbyActions.request)),
       switchMap(action => {
-        socket.send(action)
+        lobbySocket.send(action)
         return empty()
       })
     )
@@ -24,28 +25,9 @@ export const createLobbyRequestEpic: Epic = (action$) =>
 export const createLobbySuccessEpic: Epic = (action$) =>
   action$
     .pipe(
-      filter(isActionOf(rootActions.lobby.createLobbyActions.success)),
-        switchMap((lobby: any) => {
-        return of(rootActions.lobby.setLobbyAction(lobby as ILobby))
+      filter(isActionOf(createLobbyActions.success)),
+      switchMap(({payload}) => {
+        history.push('/lobbyList')
+        return of(setLobbyAction(payload))
       })
-    )
-
-export const startGameRequestEpic: Epic = (action$) =>
-  action$
-    .pipe(
-      filter(isActionOf(rootActions.lobby.startGameActions.request)),
-      switchMap(action => {
-        socket.send(action)
-        return empty()
-      }),
-    )
-
-export const startGameSuccessEpic: Epic = (action$) =>
-  action$
-    .pipe(
-      filter(isActionOf(rootActions.lobby.startGameActions.success)),
-      switchMap(({ payload }) => {
-        history.push('/game')
-        return of(rootActions.game.setGameAction(payload))
-      }),
     )

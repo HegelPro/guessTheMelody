@@ -7,27 +7,27 @@ import Button from '@material-ui/core/Button'
 import actions from '../../../store/actions'
 import LayoutContent from '../../Layouts/LayoutContent'
 
-interface IGameOptions {
-  maxPlayers?: number
-  passward?: string
-}
+import {
+  ILobbyOptions
+} from '../../../Containers/Lobby/types'
+
 
 const LobbyCreate = () => {
   const dispatch = useDispatch()
-  const [gameOptions, setGameOptions] = useState<IGameOptions>({})
+  const [lobbyOptions, setLobbyOptions] = useState<ILobbyOptions>({})
 
   return (
     <LayoutContent>
       <TextField
         type='number'
         label='Max players'
-        onChange={({ target: { value } }) => setGameOptions({ ...gameOptions, maxPlayers: +value })}
+        onChange={({ target: { value } }) => setLobbyOptions({ ...lobbyOptions, maxPlayers: +value })}
       />
       <TextField
         label='Password'
-        onChange={({ target: { value } }) => setGameOptions({ ...gameOptions, passward: value })}
+        onChange={({ target: { value } }) => setLobbyOptions({ ...lobbyOptions, password: value })}
       />
-      <Button variant='contained' color='primary' onClick={() => dispatch(actions.lobby.createLobbyActions.request())}>Send</Button>
+      <Button variant='contained' color='primary' onClick={() => dispatch(actions.lobby.createLobbyActions.request(lobbyOptions))}>Send</Button>
     </LayoutContent>
   )
 }

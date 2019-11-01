@@ -1,5 +1,6 @@
 const EventEmitter = require('events').EventEmitter
-const { createAction } = require('../../utils')
+
+const { createAction } = require('./utils')
 
 
 class SioEmitter extends EventEmitter {
@@ -7,11 +8,10 @@ class SioEmitter extends EventEmitter {
     super()
     this.socket = socket
     
-    socket.on('message', ({
+    this.socket.on('message', ({
       type,
       payload,
     }) => {
-      console.log(type)
       super.emit(type, payload)
     })
 
@@ -19,9 +19,8 @@ class SioEmitter extends EventEmitter {
       super.on(name + '/request', cb)
     }
 
-    this.emit = (name, data) => {
+    this.emit = (name, data) =>
       this.socket.send(createAction(name, data))
-    }
   }
 }
 

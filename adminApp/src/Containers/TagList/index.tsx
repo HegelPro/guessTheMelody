@@ -6,11 +6,8 @@ interface IProps {
   onDeleteTag: (tag: ITag) => void
 }
 
-export const TagList = ({tags, onDeleteTag}: IProps) => {
-  return (
-    <React.Fragment>
-      {tags.map(tag =><Tag tag={tag} onDeleteTag={onDeleteTag} />)}
-    </React.Fragment>
-  )
-
-}
+export const TagList = ({tags, onDeleteTag}: IProps) => (
+  <React.Fragment>
+    {tags.map((tag, i) =><Tag key={i} tag={tag} onDeleteTag={onDeleteTag} />)}
+  </React.Fragment>
+)

@@ -1,14 +1,17 @@
-import socket from './game/initSocket'
+import initSocket from './init'
 
-import { store } from '../store'
-import rootActions from '../store/actions'
+import {
+  SOCKETS,
+  PORT,
+} from '../config'
 
-socket.on('error', (e: any) => {
-  store.dispatch(rootActions.error.setErrorAction(e))
+
+export const lobbySocket = initSocket({
+  port: PORT,
+  path: SOCKETS.lobby.path,
 })
 
-socket.on('message', (action: any) => {
-  store.dispatch(action)
+export const gameSocket = initSocket({
+  port: PORT,
+  path: SOCKETS.game.path,
 })
-
-export default socket

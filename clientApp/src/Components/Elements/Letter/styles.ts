@@ -11,6 +11,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: theme.spacing(1),
       margin: theme.spacing(1),
       background: theme.palette.grey[700],
+    },
+    hidden: {
+      background: 'green'
     }
   })
 )

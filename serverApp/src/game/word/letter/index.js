@@ -1,11 +1,11 @@
 class Letter {
   constructor(char) {
     this.char = char
-    this.isHiden = true
+    this.isHidden = true
   }
 
   show() {
-    this.isHiden = false
+    this.isHidden = false
   }
 
   toChar() {

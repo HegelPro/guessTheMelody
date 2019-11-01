@@ -1,18 +1,23 @@
 import React from 'react'
+import classnames from 'classnames'
 
 import { useStyles } from './styles'
 
 
 interface IProps {
+  isHidden: boolean
   children: React.ReactNode
 }
 
 const Letter = ({
+  isHidden,
   children,
 }: IProps) => {
-  const classNames = useStyles()
+  const classes = useStyles()
   return (
-    <div className={classNames.root}>
+    <div className={classnames(classes.root, {
+      [classes.hidden]: isHidden,
+    })}>
       {children}
     </div>
   )

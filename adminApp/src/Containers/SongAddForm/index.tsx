@@ -56,15 +56,17 @@ export const SongAddForm = () => {
           authorName,
           urlName,
           tags,
+        }).then((song: any) => {
+          const data = new FormData()
+          const input = document.querySelector('#kek') as any
+          data.append('image', input.files[0])
+          fetch(`${baseUrl}${routes.songs.upload}/${song._id}`, {
+            method: 'POST',
+            body: data,
+          })
         })
         // Отправить картинку !!
-        const data = new FormData()
-        const input = document.querySelector('#kek') as any
-        data.append('image', input.files[0])
-        fetch(`${baseUrl}${routes.songs.upload}`, {
-          method: 'POST',
-          body: data,
-        })
+        
       }}>Click</Button>
     </FormGroup>
   )

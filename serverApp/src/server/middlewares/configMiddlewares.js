@@ -1,14 +1,12 @@
 const express = require('express')
 const path = require('path')
 
-const cors = require('cors')
-
-const session = require('../session')
-
+const sessionMiddleware = require('./sessionMiddleware')
+const corsMiddleware = require('./corsMiddleware')
 
 module.exports = [
-  express.static(path.join(__dirname, '..', 'public')),
-  cors({credentials: true, origin: 'http://localhost:3000'}), // TODO пока не изучу HTTP запросы
+  express.static(path.join(__dirname, '..', '..', 'public')),
   express.json(),
-  session,
+  corsMiddleware,
+  sessionMiddleware,
 ]

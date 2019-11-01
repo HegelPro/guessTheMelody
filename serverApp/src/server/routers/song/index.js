@@ -48,13 +48,17 @@ router.post('/edit/:id', async (req, res) => {
     res.send()
 })
 
-router.post('/upload', upload.single('image'), async (req, res) => {
+router.post('/upload/:id', upload.single('image'), async (req, res) => {
     let filedata = req.file
     console.log(filedata)
     console.log(req.body)
+    console.log(req.params.id)
     if(!filedata)
         res.send("Ошибка при загрузке файла")
     else
+        await Song.findByIdAndUpdate(req.params.id, {
+            url: `/${filedata.filename}`,
+        })
         res.send("Файл загружен")
 })
 

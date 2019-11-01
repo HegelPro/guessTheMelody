@@ -17,8 +17,8 @@ class Lobbies {
     this.lobbies.push(lobby)
   }
 
-  createLobby() {
-    const lobby = Lobby.create({})
+  createLobby(options) {
+    const lobby = Lobby.create(options)
     this.setLobby(lobby)
     return lobby
   }

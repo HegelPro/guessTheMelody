@@ -5,6 +5,7 @@ import { filter, switchMap, catchError } from 'rxjs/operators'
 
 import { Epic } from '../../store/types'
 import rootActions from '../../store/actions'
+import history from '../Routers/history'
 
 export const loginEpic: Epic = action$ =>
   action$
@@ -24,7 +25,10 @@ export const loginEpic: Epic = action$ =>
           })
         })
           .pipe(
-            switchMap(({ response }) => of(rootActions.login.loginAction.success(response))),  // TODO any
+            switchMap(({ response }) => {
+              history.push('/')
+              return of(rootActions.login.loginAction.success(response))
+            }),  // TODO any
             catchError(e => of(rootActions.error.setErrorAction(e)))
           )
       )
@@ -41,7 +45,10 @@ export const logoutEpic: Epic = action$ =>
           withCredentials: true,
         })
           .pipe(
-            switchMap(() => empty()),
+            switchMap(() => {
+              history.push('/auth/login')
+              return empty()
+            }),
             catchError(e => of(rootActions.error.setErrorAction(e)))
           )
       )

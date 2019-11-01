@@ -1,8 +1,16 @@
 export interface ILetter {
   char: string
-  isHiden: boolean
+  isHidden: boolean
+}
+
+export type IWord = ILetter[]
+
+export interface ISong {
+  author: string
+  url: string
 }
 
 export interface IGame {
-  word: ILetter[]
+  word: IWord
+  song: ISong
 }

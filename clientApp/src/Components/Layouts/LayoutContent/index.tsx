@@ -8,10 +8,10 @@ interface IProps {
 } 
 
 const LayoutContent = ({ children }: IProps) => {
-  const classNames = useStyles()
+  const classes = useStyles()
   return (
-    <Container>
-      <Paper className={classNames.root}>
+    <Container className={classes.root}>
+      <Paper className={classes.paper}>
         {children}
       </Paper>
     </Container>

@@ -1,20 +1,19 @@
 const socketIo = require('socket.io')
 
-const { connection } = require('./events')
-const { SOCKETS } = require('./config')
+const { connection: lobbyConnection } = require('./lobbySocket/events')
+const { connection: gameConnection } = require('./gameSocket/events')
 
-const session = require('../server/session')
+const { SOCKETS } = require('./config')
 
 
 module.exports.connectWebSocket = server => {
   const sio = socketIo(server)
-
-  // use for add session
-  sio.use((socket, next) => session(socket.request, {}, next))
   
-  sio
-    .of(SOCKETS.game.path)
-    .on('connection', socket => connection(socket))
+  const lobbySio = sio.of(SOCKETS.lobby.path)
+  lobbySio.on('connection', lobbyConnection)
+
+  const gameSio = sio.of(SOCKETS.game.path)
+  gameSio.on('connection', gameConnection)
 }
   
     

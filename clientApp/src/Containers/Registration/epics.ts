@@ -6,6 +6,7 @@ import { filter, switchMap } from 'rxjs/operators'
 
 import { Epic } from '../../store/types'
 import actions from '../../store/actions'
+import history from '../Routers/history'
 
 export const createUserEpic: Epic = (action$) =>
   action$
@@ -30,7 +31,10 @@ export const createUserEpic: Epic = (action$) =>
           })
         })
           .pipe(
-            switchMap(() => empty()),
+            switchMap(() => {
+              history.push('/auth/login')
+              return empty()
+            }),
             catchError(e => of(actions.error.setErrorAction(e))
           )
       ),

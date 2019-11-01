@@ -9,9 +9,9 @@ interface IProps {
 const Screen = ({
   children,
 }: IProps) => {
-  const classNames = useStyles()
+  const classes = useStyles()
   return (
-    <div className={classNames.root}>
+    <div className={classes.root}>
       {children}
     </div>
   )

@@ -11,7 +11,6 @@ const song = new Schema({
     },
     url: {
         type: String,
-        required: true,
     },
     tags: {
         type: [String],
