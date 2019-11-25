@@ -6,11 +6,16 @@ const whitelist = ['http://localhost:3000', 'http://localhost:3001']
 const corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { credentials: true, origin: true } // reflect (enable) the requested origin in the CORS response
+    corsOptions = { credentials: true, origin: true }
   } else {
-    corsOptions = { origin: false } // disable CORS for this request
+    corsOptions = { origin: false }
+
+    callback(null, corsOptions)
   }
-  callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-module.exports = cors(corsOptionsDelegate) // TODO пока не изучу HTTP запросы
+// module.exports = cors(corsOptionsDelegate) // only whiteList
+module.exports = cors({
+  credentials: true,
+  origin: true,
+})

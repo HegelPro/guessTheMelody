@@ -6,7 +6,7 @@ class Lobbies {
   }
 
   get() {
-    return this.lobbies
+    return this.lobbies.map(lobby => lobby.toClient())
   }
 
   getLobby(lobbyId) {
@@ -17,8 +17,17 @@ class Lobbies {
     this.lobbies.push(lobby)
   }
 
+  joinLobby({
+    id,
+    options,
+  }) {
+    const lobby = this.getLobby(id)
+    lobby.join(options)
+  }
+
   createLobby(options) {
     const lobby = Lobby.create(options)
+    lobby.connectPlayer(options.owner)
     this.setLobby(lobby)
     return lobby
   }

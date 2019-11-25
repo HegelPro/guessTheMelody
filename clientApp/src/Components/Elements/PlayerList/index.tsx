@@ -1,12 +1,18 @@
 import React from 'react'
-// import { RootState } from '../../../store/types'
-// import { useSelector } from 'react-redux'
 
-const PlayerList = () => {
-  // const lobby = useSelector((state: RootState) => state.lobby)
+import { IPlayer } from '../../../Containers/Player/types'
+
+
+interface IProps {
+  players: IPlayer[]
+}
+
+const PlayerList = ({
+  players,
+}: IProps) => {
   return (
     <div>
-      players
+      {players.map(player => <div key={player.account.id}>{player.account.name}</div>)}
     </div>
   )
 }

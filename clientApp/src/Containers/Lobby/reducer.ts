@@ -6,10 +6,11 @@ import { ILobby } from './types'
 export type LobbyActions = ActionType<typeof lobbyActions>
 
 const defaultState: ILobby = {
+  name: 'new',
   id: 'new',
   maxPlayers: 0,
   minPlayers: 0,
-  password: '',
+  withPassword: false,
   players: []
 }
 

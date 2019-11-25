@@ -5,6 +5,7 @@ import Home from '../../Components/Pages/Home'
 import NotFound from '../../Components/Pages/NotFound'
 import AccountEdit from '../AccountEdit'
 import AccountInfo from '../../Components/Pages/AccountInfo'
+import Test from '../../Components/Test'
 import Login from '../Login'
 import Registration from '../Registration'
 import Game from '../Game'
@@ -70,6 +71,12 @@ const RouterConfig: IRouteData[] = [
       }
     ]
   },
+  // Start test Part
+  {
+    path: '/test',
+    component: Test,
+  },
+  // End test Part
   {
     path: '*',
     component: NotFound,

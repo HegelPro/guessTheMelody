@@ -5,8 +5,8 @@ const sessionMiddleware = require('./sessionMiddleware')
 const corsMiddleware = require('./corsMiddleware')
 
 module.exports = [
+  corsMiddleware,
   express.static(path.join(__dirname, '..', '..', 'public')),
   express.json(),
-  corsMiddleware,
   sessionMiddleware,
 ]

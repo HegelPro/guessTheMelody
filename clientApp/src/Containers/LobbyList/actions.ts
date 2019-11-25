@@ -2,6 +2,11 @@ import { createStandardAction, createAsyncAction } from 'typesafe-actions'
 import { ILobby } from '../Lobby/types'
 
 
+interface JoinLobbyRequest {
+  id: string
+  password: string
+}
+
 export const getLobbyListActions = createAsyncAction(
   'getLobbyList/request',
   'getLobbyList/success',
@@ -14,4 +19,4 @@ export const joinLobbyActions = createAsyncAction(
   'joinLobby/request',
   'joinLobby/success',
   'joinLobby/failure',
-)<string, ILobby, undefined>()
+)<JoinLobbyRequest, ILobby, undefined>()

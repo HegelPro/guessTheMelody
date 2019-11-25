@@ -39,6 +39,9 @@ const Navigation = () => {
             (
               <React.Fragment>
                 <Button>
+                  <Link to='/test'>Test</Link>
+                </Button>
+                <Button>
                   <Link to='/lobbyList'>Lobbys</Link>
                 </Button>
                 <Button>

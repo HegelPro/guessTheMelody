@@ -31,3 +31,13 @@ export const createLobbySuccessEpic: Epic = (action$) =>
         return of(setLobbyAction(payload))
       })
     )
+
+export const createLobbyFailareEpic: Epic = (action$) =>
+  action$
+    .pipe(
+      filter(isActionOf(createLobbyActions.failure)),
+      switchMap(() => {
+        console.log('lol')
+        return empty()
+      })
+    )

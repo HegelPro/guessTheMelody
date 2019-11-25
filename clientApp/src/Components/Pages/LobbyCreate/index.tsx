@@ -19,6 +19,10 @@ const LobbyCreate = () => {
   return (
     <LayoutContent>
       <TextField
+        label='Lobby name'
+        onChange={({ target: { value } }) => setLobbyOptions({ ...lobbyOptions, name: value })}
+      />
+      <TextField
         type='number'
         label='Max players'
         onChange={({ target: { value } }) => setLobbyOptions({ ...lobbyOptions, maxPlayers: +value })}

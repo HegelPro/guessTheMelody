@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { ILobby } from '../../../Containers/Lobby/types'
-import { Typography, Box, Button } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
-import { joinLobbyActions } from '../../../Containers/LobbyList/actions'
-import { useDispatch } from 'react-redux'
+import { useStyles } from './styles'
 
 
 interface IProp {
@@ -14,13 +13,12 @@ interface IProp {
 const LobbyLine = ({
   lobby
 }: IProp) => {
-  const dispatch = useDispatch()
+  const styles = useStyles()
   return (
-    <Box>
-      <Typography>{lobby.id}</Typography>
+    <div className={styles.root}>
+      <Typography>{lobby.name}</Typography>
       <Typography>{lobby.players.length}/{lobby.maxPlayers}</Typography>
-      <Button onClick={() => dispatch(joinLobbyActions.request(lobby.id))}>Join lobby</Button>
-    </Box>
+    </div>
   )
 }
 
