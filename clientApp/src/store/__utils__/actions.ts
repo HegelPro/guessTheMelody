@@ -50,7 +50,7 @@ export const getSubStringBeforeSlash = (str: string): string => {
 
 export const checkAsyncAction = (asyncAction: AsyncActionCreator<any, any, any, any>): boolean => {
   const subString = getSubStringBeforeSlash(getType(asyncAction.request))
-  return getType(asyncAction.request) === `${subString}request`
-    && getType(asyncAction.success) === `${subString}success`
-    && getType(asyncAction.failure) === `${subString}failure`
+  return getType(asyncAction.request) === `${subString}req`
+    && getType(asyncAction.success) === `${subString}suc`
+    && getType(asyncAction.failure) === `${subString}fail`
 }

@@ -8,15 +8,15 @@ interface JoinLobbyRequest {
 }
 
 export const getLobbyListActions = createAsyncAction(
-  'getLobbyList/request',
-  'getLobbyList/success',
-  'getLobbyList/failure',
+  'getLobbyList/req',
+  'getLobbyList/suc',
+  'getLobbyList/fail',
 )<undefined, ILobby[], undefined>()
 
 export const setLobbyListAction = createStandardAction('setLobbyList')<ILobby[]>()
 
 export const joinLobbyActions = createAsyncAction(
-  'joinLobby/request',
-  'joinLobby/success',
-  'joinLobby/failure',
+  'joinLobby/req',
+  'joinLobby/suc',
+  'joinLobby/fail',
 )<JoinLobbyRequest, ILobby, undefined>()

@@ -9,21 +9,21 @@ import { IWord, IGame } from './types'
 export const setWordAction = createStandardAction('setWord')<IWord>()
 
 export const requestWordActions = createAsyncAction(
-  'requestWord/request',
-  'requestWord/success',
-  'requestWord/failure',
+  'requestWord/req',
+  'requestWord/suc',
+  'requestWord/fail',
 )<undefined, IWord, undefined>()
 
 export const guessSongActions = createAsyncAction(
-  'guessSong/request',
-  'guessSong/success',
-  'guessSong/failure',
+  'guessSong/req',
+  'guessSong/suc',
+  'guessSong/fail',
 )<string, boolean, undefined>()
 
 export const setGameAction = createStandardAction('setGame')<IGame>()
 
 export const showLetterActions = createAsyncAction(
-  'showLetter/request',
-  'showLetter/success',
-  'showLetter/failure',
+  'showLetter/req',
+  'showLetter/suc',
+  'showLetter/fail',
 )<undefined, IWord, undefined>()

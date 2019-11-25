@@ -2,7 +2,7 @@ import { createAsyncAction } from 'typesafe-actions'
 import { IAccount } from '../Login/types'
 
 export const getSessionFromCookiesAction = createAsyncAction(
-  'getSessionFromCookies/request',
-  'getSessionFromCookies/success',
-  'getSessionFromCookies/failure',
+  'getSessionFromCookies/req',
+  'getSessionFromCookies/suc',
+  'getSessionFromCookies/fail',
 )<undefined, IAccount, undefined>()

@@ -8,13 +8,13 @@ import { IGame } from '../Game/types'
 export const setLobbyAction = createStandardAction('setLobby')<ILobby>()
 
 export const createLobbyActions = createAsyncAction(
-  'createLobby/request',
-  'createLobby/success',
-  'createLobby/failure',
+  'createLobby/req',
+  'createLobby/suc',
+  'createLobby/fail',
 )<ILobbyOptions, ILobby, undefined>()
 
 export const startGameActions = createAsyncAction(
-  'startGame/request',
-  'startGame/success',
-  'startGame/failure',
+  'startGame/req',
+  'startGame/suc',
+  'startGame/fail',
 )<undefined, IGame, undefined>()

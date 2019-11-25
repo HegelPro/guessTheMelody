@@ -20,7 +20,7 @@ class SioEmitter extends EventEmitter {
     })
 
     this.on = (name, cb) => {
-      super.on(name + '/request', cb)
+      super.on(name + '/req', cb)
     }
 
     this.emit = (name, data) =>

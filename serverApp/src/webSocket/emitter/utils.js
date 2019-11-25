@@ -1,14 +1,14 @@
 module.exports.createAction = (actionType, payload) => ({
-  type: actionType + '/success',
+  type: actionType + '/suc',
   payload,
 })
 
 module.exports.createSuccessAction = (actionType, payload) => ({
-  type: actionType + '/success',
+  type: actionType + '/suc',
   payload,
 })
 
 module.exports.createErrorAction = (actionType, payload) => ({
-  type: actionType + '/failure',
+  type: actionType + '/fail',
   payload,
 })
