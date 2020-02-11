@@ -3,6 +3,8 @@ const Game = require('../../../game')
 const Song = require('../../../db/models/song')
 
 
+const func = time => time * 3/4
+
 module.exports = sioEmitter => async function() {
   // sioEmitter.socket.join(newGame.id) // TODO need in furter
 
@@ -14,19 +16,16 @@ module.exports = sioEmitter => async function() {
 
   this.socket.game = newGame
 
-  let counter = 0 // bad
+  let time = func(5000)
   const showLetterFunc = () => {
+    time = func(time)
     try {
       newGame.word.showRandomLetter()
-
       sioEmitter.emit('showLetter', newGame.word.value)
-      if (counter < 5) { // bad
-        counter++ // bad
-        setTimeout(showLetterFunc, 1000) // bad
-      }
+      setTimeout(showLetterFunc, time)
     } catch (error) {}
   }
-  setTimeout(showLetterFunc, 1000)
+  setTimeout(showLetterFunc, time)
 
   sioEmitter.emit('startGame', newGame.toClient())
 }

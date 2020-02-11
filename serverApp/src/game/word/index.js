@@ -13,7 +13,6 @@ class Word {
   }
 
   showRandomLetter() {
-    // может попадать в одно итоже место
     const isNotHiddenLetters = this.value.filter(letter  => letter.isHidden)
 
     if (isNotHiddenLetters.length > 0) {

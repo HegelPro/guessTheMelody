@@ -38,7 +38,11 @@ class Audio extends Component<IProps, IState> {
     this.analyser.connect(this.audioCtx.destination)
     this.src.connect(this.analyser)
 
-    this.animationId = requestAnimationFrame(this.tick)
+    this.animationId = requestAnimationFrame(this.tick);
+
+    (window as any).onload = () => {
+      audio.play()
+    }
   }
 
   componentWillUnmount() {

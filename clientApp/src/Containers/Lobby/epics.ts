@@ -27,7 +27,7 @@ export const createLobbySuccessEpic: Epic = (action$) =>
     .pipe(
       filter(isActionOf(createLobbyActions.success)),
       switchMap(({payload}) => {
-        history.push('/lobbyList')
+        history.push('/lobby/info')
         return of(setLobbyAction(payload))
       })
     )
@@ -37,7 +37,6 @@ export const createLobbyFailareEpic: Epic = (action$) =>
     .pipe(
       filter(isActionOf(createLobbyActions.failure)),
       switchMap(() => {
-        console.log('lol')
         return empty()
       })
     )

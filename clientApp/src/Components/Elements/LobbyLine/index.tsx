@@ -17,7 +17,7 @@ const LobbyLine = ({
   return (
     <div className={styles.root}>
       <Typography>{lobby.name}</Typography>
-      <Typography>{lobby.players.length}/{lobby.maxPlayers}</Typography>
+      {/* <Typography>{lobby.players.length}/{lobby.maxPlayers}</Typography> Todo Добавть позже*/}
     </div>
   )
 }
