@@ -17,11 +17,11 @@ services:
 #    driver: vieux/sshfs:latest
 #    driver_opts:
 #      sshcmd: "server@192.168.1.52:/home/server/app/server"
-#      password: "sawdqe123"
+#      password: "123456"
 #      allow_other: ""
 #  sshClient:
 #    driver: vieux/sshfs:latest
 #    driver_opts:
 #      sshcmd: "server@192.168.1.52:/home/server/app/client"
-#      password: "sawdqe123"
+#      password: "123456"
 #      allow_other: ""
